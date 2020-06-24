@@ -1,7 +1,6 @@
 package org.salim.tutos;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ResourceBundle;
 
 /**
  * Hello world!
@@ -9,18 +8,14 @@ import java.util.stream.Collectors;
  */
 public class App
 {
-    public static void main( String[] args )
-    {
+    public static void main(String[] args){
+        ResourceBundle configProp = ResourceBundle.getBundle("config");
+        ResourceBundle filtersProp = ResourceBundle.getBundle("filters");
 
-        List<Object> keys = java.lang.System.getProperties().keySet().stream().sorted(Comparator.comparing(Object::toString)).collect(Collectors.toList());
-        Iterator<Object> iterKeys = keys.iterator();
-
-        Object o;
-
-        for (int i = 0; i < keys.size(); i++) {
-            o = iterKeys.next();
-            System.out.println(o + " -- " + java.lang.System.getProperties().get(o) + "\n");
-        }
-
+        System.out.println("Env : " + configProp.getString("aaa"));
+        System.out.println("Version : " + filtersProp.getString("org.salim.tutos.version"));
+        System.out.println("Name : " + filtersProp.getString("org.salim.tutos.name"));
+        System.out.println("ArtifactId : " + filtersProp.getString("org.salim.tutos.artId"));
+        System.out.println("GroupId : " + filtersProp.getString("org.salim.tutos.grpId"));
     }
 }
